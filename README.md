@@ -24,7 +24,12 @@ pip install -r requirements.txt
    - Alternatively, you can also create a brace expansion for your initial job data, e.g. `init.py --brace "{00..99}.tar"`.
    - For more info, run `init.py --help`.
    - WARNING: running init.py will reset your database, so ensure you make a backup of any previous data before running the script!
-5. Start ASGI server
+5. Setup Project
+   - Open `config.py`, and rename `PROJECT_NAME` to a more suitable name for your project.
+   - Edit `STAGE_<N>` to add the names of each stage of your workflow. If the next stage is set to None, the job is marked as complete. Otherwise, workers operating at the next stage will recieve the output of the current stage as an input.
+   - If you would like a linear `input -[worker]-> output` workflow, only enable `STAGE_A`.
+   - The default setting is the workflow used previously for the production of the LAION-5B dataset. CPU workers at stage A would download and store images+alt text from CommonCrawl in tar files. GPU workers at stage B would then be inputted with these tar files, and then filter these images using CLIP to create the final dataset. [(see paper)](https://arxiv.org/abs/2210.08402)
+6. Start ASGI server
    - You can either use `gunicorn` or `uvicorn`. Previously, the LAION-5B production server used `uvicorn` with 12 worker processes.
    - e.g. `uvicorn main:app --host 0.0.0.0 --port 80 --workers 12`
 
