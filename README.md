@@ -7,6 +7,7 @@ A server previously powering LAION's distributed compute network for filtering c
    <img src="https://raw.githubusercontent.com/TheoCoombes/Distributed-Compute-Tracker/main/cdn/example.png" width="550"/>
    <br>
    LAION-5B Example
+   <br>
 </p>
 
 Workers at each stage of the job workflow recieve the input(s) created by previous workers, and perform their specialised task before workers at the next stage continue the job with their task.
