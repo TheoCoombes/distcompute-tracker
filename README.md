@@ -3,7 +3,9 @@
 
 A server previously powering LAION's distributed compute network for filtering commoncrawl with CLIP to produce the LAION-400M and LAION-5B datasets, now repurposed as a general-use multi-layer distributed compute tracker and job manager, with added support for a frontend web server dashboard, user leaderboards and up to 5 recursive layers of workers for each job.
 
-<img src="https://raw.githubusercontent.com/TheoCoombes/Distributed-Compute-Tracker/main/cdn/example.png" width="500"/>
+<center>
+   <img src="https://raw.githubusercontent.com/TheoCoombes/Distributed-Compute-Tracker/main/cdn/example.png" width="550"/>
+</center>
 
 Workers at each stage of the job workflow recieve the input(s) created by previous workers, and perform their specialised task before workers at the next stage continue the job with their task.
 
