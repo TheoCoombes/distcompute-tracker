@@ -13,8 +13,8 @@ cd Distributed-Compute-Tracker
 pip install -r requirements.txt
 ```
 2. Setup Redis
-   - [Redis Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04)
-   - Configure your Redis connection url in `config.py`.
+   - [Redis Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04) - follow steps 1-2.
+   - You may need to configure your Redis connection url in `config.py` if you have changed any port bindings.
 3. Setup SQL database
    - [PostGreSQL Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04) - follow steps 1-4, noting down the name you give your database.
    - Install the required python library for the database you are using. (see link above)
