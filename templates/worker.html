@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+	<title>{{ PROJECT_NAME }} | Worker Stats</title>
+        <link href="https://cdn.jsdelivr.net/gh/TheoCoombes/crawlingathome-server@main/cdn/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<meta http-equiv="refresh" content="30">
+	</head>
+	<body style='margin-left: 25px; margin-right: 25px; margin-top: 25px;'>
+        <h1>{{ PROJECT_NAME }} Dashboard</h1>
+        <br><br>
+        <h2>Worker: {{ worker.display_name }}</h2>
+        <br>
+        <strong>Worker Stage:</strong> {{ worker_type_name }} ({{ worker.type }})
+	    <br><br>
+        <strong>First Seen:</strong> <span class="timestamp">{{ worker.first_seen }}</span>
+	    <br><br>
+        <strong>Last Seen:</strong> <span class="timestamp">{{ worker.last_seen }}</span>
+        <br><br>
+        <strong>Owner's Nickname:</strong> {{ worker.user_nickname }}
+	    <br><br>
+        {% if worker.job is none %}
+            <strong>Job:</strong> (none)
+        {% else %}
+            <strong>Job:</strong> {{ '{:,}'.format(worker.job.number) }}
+        {% endif %}
+        <br><br>
+        <strong>Latest Progress Update:</strong> "{{ worker.progress }}"
+        <br><br>
+        <strong>Total Shards Completed:</strong> {{ '{:,}'.format(worker.jobs_completed) }}
+        <br><br>
+        <strong>Efficiency:</strong> {{ '{0:.2f}'.format((worker.jobs_completed / (worker.last_seen - worker.first_seen)) * 3600) }} shards per hour
+        <br><br><br>
+	    <a href="/">Back</a>
+	
+        <script src="https://cdn.jsdelivr.net/gh/TheoCoombes/crawlingathome-server@main/cdn/main.js"></script>
+	</body>
+</html>

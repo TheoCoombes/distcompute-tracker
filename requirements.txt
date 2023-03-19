@@ -1,0 +1,8 @@
+fastapi
+jinja2
+aiofiles
+asyncio
+numpy
+aiofiles
+tortoise-orm
+aioredis==2.0.0b1

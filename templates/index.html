@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>{{ PROJECT_NAME }} | Home</title>
+        <link href="https://cdn.jsdelivr.net/gh/TheoCoombes/crawlingathome-server@main/cdn/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<meta http-equiv="refresh" content="30">
+	</head>
+	<body style='margin-left: 25px; margin-right: 25px; margin-top: 25px;'>
+        <h1>{{ PROJECT_NAME }} Dashboard</h1>
+        <br><br>
+        <h2>Stats</h2>
+        <br>
+        <strong>Completion: {{ "{0:.2f}".format(completion_float) }}%</strong> ({{ completion_str }} jobs completed)
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ completion_float }}%;" aria-valuenow='{{ completion_float }}' aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br><br>
+        <strong>Estimated Time Until Completion:</strong> {{ eta }}
+        <br><br><br>
+        {% if STAGE_A %}
+            <h2>Connected {{ STAGE_A }} Workers - {{ "{:,}".format(len_a) }}</h2>
+            <br>
+            {% if len_a != 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Job #</th>
+                        <th scope="col">Job Progress</th>
+                        <th scope="col">Jobs Completed</th>
+                        <th scope="col">Owner's Nickname</th>
+                        <th scope="col">Last Seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for worker in a_workers %}
+                            <tr>
+                                <th scope="row"><a href="/worker/{{ STAGE_A }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                {% if not worker.job %}
+                                    <td><i>Waiting</i></td>
+                                {% else %}
+                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                {% endif %}
+                                <td>{{ worker.progress }}</td>
+                                <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
+                                <td>{{ worker.user_nickname }}</td>
+                                <td class="timestamp">{{ worker.last_seen }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if len_a > 50 and not all %}
+                    <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
+                {% endif %}
+            {% else %}
+                <p>There are no {{ STAGE_A }} workers currently running.</p>
+            {% endif %}
+            <br><br>
+        {% endif %}
+        
+        {% if STAGE_B %}
+            <h2>Connected {{ STAGE_B }} Workers - {{ "{:,}".format(len_b) }}</h2>
+            <br>
+            {% if len_b != 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Job #</th>
+                        <th scope="col">Job Progress</th>
+                        <th scope="col">Jobs Completed</th>
+                        <th scope="col">Owner's Nickname</th>
+                        <th scope="col">Last Seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for worker in b_workers %}
+                            <tr>
+                                <th scope="row"><a href="/worker/{{ STAGE_B }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                {% if not worker.job %}
+                                    <td><i>Waiting</i></td>
+                                {% else %}
+                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                {% endif %}
+                                <td>{{ worker.progress }}</td>
+                                <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
+                                <td>{{ worker.user_nickname }}</td>
+                                <td class="timestamp">{{ worker.last_seen }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if len_b > 50 and not all %}
+                    <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
+                {% endif %}
+            {% else %}
+                <p>There are no {{ STAGE_B }} workers currently running.</p>
+            {% endif %}
+            <br><br>
+        {% endif %}
+        
+        {% if STAGE_C %}
+            <h2>Connected {{ STAGE_C }} Workers - {{ "{:,}".format(len_c) }}</h2>
+            <br>
+            {% if len_c != 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Job #</th>
+                        <th scope="col">Job Progress</th>
+                        <th scope="col">Jobs Completed</th>
+                        <th scope="col">Owner's Nickname</th>
+                        <th scope="col">Last Seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for worker in c_workers %}
+                            <tr>
+                                <th scope="row"><a href="/worker/{{ STAGE_C }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                {% if not worker.job %}
+                                    <td><i>Waiting</i></td>
+                                {% else %}
+                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                {% endif %}
+                                <td>{{ worker.progress }}</td>
+                                <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
+                                <td>{{ worker.user_nickname }}</td>
+                                <td class="timestamp">{{ worker.last_seen }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if len_c > 50 and not all %}
+                    <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
+                {% endif %}
+            {% else %}
+                <p>There are no {{ STAGE_C }} workers currently running.</p>
+            {% endif %}
+            <br><br>
+        {% endif %}
+
+        {% if STAGE_D %}
+            <h2>Connected {{ STAGE_D }} Workers - {{ "{:,}".format(len_d) }}</h2>
+            <br>
+            {% if len_d != 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Job #</th>
+                        <th scope="col">Job Progress</th>
+                        <th scope="col">Jobs Completed</th>
+                        <th scope="col">Owner's Nickname</th>
+                        <th scope="col">Last Seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for worker in d_workers %}
+                            <tr>
+                                <th scope="row"><a href="/worker/{{ STAGE_D }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                {% if not worker.job %}
+                                    <td><i>Waiting</i></td>
+                                {% else %}
+                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                {% endif %}
+                                <td>{{ worker.progress }}</td>
+                                <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
+                                <td>{{ worker.user_nickname }}</td>
+                                <td class="timestamp">{{ worker.last_seen }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if len_d > 50 and not all %}
+                    <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
+                {% endif %}
+            {% else %}
+                <p>There are no {{ STAGE_D }} workers currently running.</p>
+            {% endif %}
+            <br><br>
+        {% endif %}
+
+        {% if STAGE_E %}
+            <h2>Connected {{ STAGE_E }} Workers - {{ "{:,}".format(len_e) }}</h2>
+            <br>
+            {% if len_e != 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Job #</th>
+                        <th scope="col">Job Progress</th>
+                        <th scope="col">Jobs Completed</th>
+                        <th scope="col">Owner's Nickname</th>
+                        <th scope="col">Last Seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for worker in e_workers %}
+                            <tr>
+                                <th scope="row"><a href="/worker/{{ STAGE_E }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                {% if not worker.job %}
+                                    <td><i>Waiting</i></td>
+                                {% else %}
+                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                {% endif %}
+                                <td>{{ worker.progress }}</td>
+                                <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
+                                <td>{{ worker.user_nickname }}</td>
+                                <td class="timestamp">{{ worker.last_seen }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if len_e > 50 and not all %}
+                    <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
+                {% endif %}
+            {% else %}
+                <p>There are no {{ STAGE_E }} workers currently running.</p>
+            {% endif %}
+            <br><br>
+        {% endif %}
+
+        <h2>Links</h2>
+        <p>
+            <ul>
+                <br>
+                <strong>{{ PROJECT_NAME }}</strong>
+                <li><a href="/leaderboard">Leaderboard</a></li>
+
+                <br>
+                <strong>Tracker Source Code</strong>
+                <li><a href="https://github.com/TheoCoombes/crawlingathome">Client GitHub Repository</a></li>
+                <li><a href="https://github.com/TheoCoombes/Distributed-Compute-Tracker">Server GitHub Repository</a></li>
+            </ul>
+        </p>
+        <br><br>
+
+        <script src="https://cdn.jsdelivr.net/gh/TheoCoombes/crawlingathome-server@main/cdn/main.js"></script>
+	</body>
+</html>
