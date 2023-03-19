@@ -17,8 +17,6 @@ from cache import Cache
 from database import *
 from config import *
 
-
-
 app = FastAPI()
 cache = Cache(REDIS_CONN_URL)
 templates = Jinja2Templates(directory="templates")
