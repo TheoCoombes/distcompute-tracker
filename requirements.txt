@@ -1,8 +1,8 @@
 fastapi
 jinja2
-aiofiles
 asyncio
-numpy
-aiofiles
 tortoise-orm
-aioredis==2.0.0b1
+asyncpg
+redis>=4.2.0rc1
+uvicorn
+braceexpand

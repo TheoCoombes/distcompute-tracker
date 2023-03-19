@@ -4,8 +4,8 @@ from os import getpid
 from time import time
 import asyncio
 
-from aioredis.utils import from_url
-from aioredis.client import Redis
+from redis.asyncio.utils import from_url
+from redis.asyncio.client import Redis
 
 class _PageCache:
     def __init__(self, client: Redis) -> None:
