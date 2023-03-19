@@ -20,14 +20,17 @@ pip install -r requirements.txt
    - Install the required python library for the database you are using. (see link above)
    - Configure your SQL connection in `config.py`, adding your database name to the `SQL_CONN_URL`.
 4. Add Jobs
-   - TODO job creator file. (from json list / braceexpansion?)
-5. Install ASGI server
+   - Create a JSON file containing a list of strings, each with job data (e.g. urls / filenames to process etc.) and run `init.py --json <file>` to setup the database.
+   - Alternatively, you can also create a brace expansion for your initial job data, e.g. `init.py --brace "{00..99}.tar"`.
+   - For more info, run `init.py --help`.
+   - WARNING: running `init.py` will reset your database, so ensure you make a backup of any previous data before running the script!
+5. Start ASGI server
    - From v3.0.0, you are required to start the server using a console command directly from the server backend.
    - You can either use `gunicorn` or `uvicorn`. Previously, the LAION-5B production server used `uvicorn` with 12 worker processes.
    - e.g. `uvicorn main:app --host 0.0.0.0 --port 80 --workers 12`
 
 ## Usage
-As stated in step 4 of installation, you need to run the server directly using a ASGI server library of your choice:
+As stated in step 5 of installation, you need to run the server directly using a ASGI server library of your choice:
 ```
 uvicorn main:app --host 0.0.0.0 --port 80 --workers 12
 ```

@@ -4,7 +4,6 @@ from config import SQL_CONN_URL
 from database import *
 import argparse
 import json
-import gc
 
 async def init(jobs):
     # 0. Connect to DB
