@@ -235,7 +235,25 @@ async def new(nickname: str, stage: str) -> dict:
         job=None
     )
 
-    return {"display_name": display_name, "token": token}
+    if stage == "a":
+        stage_name = STAGE_A
+    elif stage == "b":
+        stage_name = STAGE_B
+    elif stage == "c":
+        stage_name = STAGE_C
+    elif stage == "d":
+        stage_name = STAGE_D
+    else:
+        stage_name = STAGE_E
+    
+    body = {
+        "token": token,
+        "display_name": display_name,
+        "project": PROJECT_NAME,
+        "stage_name": stage_name,
+    }
+
+    return body
 
 
 @app.post('/api/validateWorker', response_class=PlainTextResponse)

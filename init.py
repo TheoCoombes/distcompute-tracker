@@ -26,6 +26,12 @@ async def init(jobs):
     i = 1
     
     for job in jobs:
+        if isinstance(job, (dict, list)):
+            job = "<!json!>" + json.dumps(job)
+        elif not isinstance(job, str):
+            print(f"job should be str/list/dict, not {type(job)}, ignoring...")
+            continue
+
         job_object = Job(
             number=i,
             stage='a',
@@ -51,7 +57,7 @@ if __name__ == "__main__":
         "--json",
         type=str,
         default=None,
-        help="Path to a JSON file containing a list of strings. The strings will contain the initial data for first-stage workers (e.g. URL to tars, folders, etc.)"
+        help="Path to a JSON file containing a list of strings/lists/dicts. These list items will contain the initial data for first-stage workers (e.g. URL to tars, data dicts, etc.)"
     )
     parser.add_argument(
         "--brace",
@@ -69,6 +75,6 @@ if __name__ == "__main__":
     else:
         raise ValueError("one of `--json`, `--brace` must be declared.")
     
-    assert isinstance(jobs, list), "the --json file must contain a list of strings containing job data."
+    assert isinstance(jobs, list), "the --json file must contain a list."
 
     run_async(init(jobs))
