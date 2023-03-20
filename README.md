@@ -6,7 +6,7 @@ A server previously powering LAION's distributed compute network for filtering c
 <p align="center">
    <img src="https://raw.githubusercontent.com/TheoCoombes/Distributed-Compute-Tracker/main/cdn/example.png" width="550"/>
    <br>
-   LAION-5B Example
+   LAION-5B Workflow Diagram
    <br>
 </p>
 
