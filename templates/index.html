@@ -18,7 +18,7 @@
         <br><br>
         <strong>Estimated Time Until Completion:</strong> {{ eta }}
         <br><br><br>
-        {% if STAGE_A %}
+        {% if STAGE_A is not none %}
             <h2>Connected {{ STAGE_A }} Workers - {{ "{:,}".format(len_a) }}</h2>
             <br>
             {% if len_a != 0 %}
@@ -60,7 +60,7 @@
             <br><br>
         {% endif %}
         
-        {% if STAGE_B %}
+        {% if STAGE_B is not none %}
             <h2>Connected {{ STAGE_B }} Workers - {{ "{:,}".format(len_b) }}</h2>
             <br>
             {% if len_b != 0 %}
@@ -102,7 +102,7 @@
             <br><br>
         {% endif %}
         
-        {% if STAGE_C %}
+        {% if STAGE_C is not none %}
             <h2>Connected {{ STAGE_C }} Workers - {{ "{:,}".format(len_c) }}</h2>
             <br>
             {% if len_c != 0 %}
@@ -144,7 +144,7 @@
             <br><br>
         {% endif %}
 
-        {% if STAGE_D %}
+        {% if STAGE_D is not none %}
             <h2>Connected {{ STAGE_D }} Workers - {{ "{:,}".format(len_d) }}</h2>
             <br>
             {% if len_d != 0 %}
@@ -186,7 +186,7 @@
             <br><br>
         {% endif %}
 
-        {% if STAGE_E %}
+        {% if STAGE_E is not none %}
             <h2>Connected {{ STAGE_E }} Workers - {{ "{:,}".format(len_e) }}</h2>
             <br>
             {% if len_e != 0 %}
