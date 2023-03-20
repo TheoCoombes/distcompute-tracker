@@ -274,7 +274,7 @@ async def newJob(inp: StandardInput) -> dict:
 
     try:
         # Empty out any existing jobs that may cause errors.
-        await Job.filter(worker=worker.token, pending=True).update(completor=None, pending=False)
+        await Job.filter(completor=worker.token, pending=True).update(completor=None, pending=False)
         
         # We update with completor to be able to find the job and make it pending in a single request, and we later set it back to None.
         # This helps us avoid workers getting assigned the same job.
@@ -285,6 +285,9 @@ async def newJob(inp: StandardInput) -> dict:
             )
         job = await Job.get(completor=worker.token, pending=True)
     except:
+        # Avoid errors / lost jobs.
+        await Job.filter(completor=worker.token, pending=True).update(completor=None, pending=False)
+        
         raise HTTPException(status_code=403, detail="Either there are no new jobs available, or there was an error whilst finding a job. Keep retrying, as jobs are dynamically created.")
     
     job.completor = None
