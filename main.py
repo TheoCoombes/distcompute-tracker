@@ -287,7 +287,7 @@ async def newJob(inp: StandardInput) -> dict:
     except:
         # Avoid errors / lost jobs.
         await Job.filter(completor=worker.token, pending=True).update(completor=None, pending=False)
-        
+
         raise HTTPException(status_code=403, detail="Either there are no new jobs available, or there was an error whilst finding a job. Keep retrying, as jobs are dynamically created.")
     
     job.completor = None
@@ -541,6 +541,9 @@ register_tortoise(
     generate_schemas=True,
     add_exception_handlers=True,
 )
+
+if STAGE_A is None:
+    raise ValueError("STAGE_A must not be None, or no jobs can reach later stages / be completed!")
 
 if __name__ == "__main__":
     print("You cannot run this script directly from Python. Call gunicorn/uvicorn directly from the terminal, using \"main:app\" as the server.")
