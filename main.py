@@ -21,9 +21,6 @@ app = FastAPI()
 cache = Cache(REDIS_CONN_URL)
 templates = Jinja2Templates(directory="templates")
 
-types = ["HYBRID", "CPU", "GPU"]
-
-
 # REQUEST INPUTS START ------
 
 class StandardInput(BaseModel):
@@ -307,7 +304,7 @@ async def updateProgress(inp: ProgressInput) -> str:
     ctime = math.floor(datetime.utcnow().timestamp())
 
     try:
-        await Worker.get(uuid=inp.token).update(progress=inp.progress, last_seen=ctime)
+        await Worker.get(token=inp.token).update(progress=inp.progress, last_seen=ctime)
     except:
         raise HTTPException(status_code=404, detail="The server could not find this worker. Did the worker time out?")
     
@@ -317,7 +314,7 @@ async def updateProgress(inp: ProgressInput) -> str:
 @app.post('/api/completeJob', response_class=PlainTextResponse)
 async def completeJob(inp: CompleteJobInput) -> str:
     try:
-        worker = await Worker.get(uuid=inp.token).prefetch_related("job")
+        worker = await Worker.get(token=inp.token).prefetch_related("job")
     except:
         raise HTTPException(status_code=404, detail="The server could not find this worker. Did the worker time out?")
     
@@ -379,7 +376,7 @@ async def completeJob(inp: CompleteJobInput) -> str:
 @app.post('/api/flagInvalidData', response_class=PlainTextResponse)
 async def flagInvalidData(inp: StandardInput) -> str:
     try:
-        worker = await Worker.get(uuid=inp.token).prefetch_related("job")
+        worker = await Worker.get(token=inp.token).prefetch_related("job")
     except:
         raise HTTPException(status_code=404, detail="The server could not find this worker. Did the worker time out?")
     
