@@ -27,8 +27,8 @@ pip install -r requirements.txt
    - Install the required python library for the database you are using. (see link above)
    - Configure your SQL connection in `config.py`, adding your database name to the `SQL_CONN_URL`.
 4. Add Jobs
-   - Create a JSON file containing a list of strings, each with job data (e.g. urls / filenames to process etc.) and run `init.py --json <file>` to setup the database.
-   - Alternatively, you can also create a brace expansion for your initial job data, e.g. `init.py --brace "{00..99}.tar"`.
+   - Create a JSON file containing either a list of strings or a list of dicts, each with job data (e.g. urls / filenames to process etc.) and run `init.py --json <file>` to setup the database.
+   - Alternatively, you can also create a brace expansion for your initial job data, e.g. `init.py --brace "./data/file_{00..99}.tar"`.
    - For more info, run `init.py --help`.
    - WARNING: running init.py will reset your database, so ensure you make a backup of any previous data before running the script!
 5. Setup Project
