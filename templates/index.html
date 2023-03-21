@@ -19,9 +19,9 @@
         <strong>Estimated Time Until Completion:</strong> {{ eta }}
         <br><br><br>
         {% if STAGE_A is not none %}
-            <h2>Connected {{ STAGE_A }} Workers - {{ "{:,}".format(len_a) }}</h2>
+            <h2>Connected {{ STAGE_A }} Workers - {{ "{:,}".format(a_len) }}</h2>
             <br>
-            {% if len_a != 0 %}
+            {% if a_len != 0 %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -51,7 +51,7 @@
                     </tbody>
                 </table>
                 <br>
-                {% if len_a > 50 and not all %}
+                {% if a_len > 50 and not all %}
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
@@ -61,9 +61,9 @@
         {% endif %}
         
         {% if STAGE_B is not none %}
-            <h2>Connected {{ STAGE_B }} Workers - {{ "{:,}".format(len_b) }}</h2>
+            <h2>Connected {{ STAGE_B }} Workers - {{ "{:,}".format(b_len) }}</h2>
             <br>
-            {% if len_b != 0 %}
+            {% if b_len != 0 %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -93,7 +93,7 @@
                     </tbody>
                 </table>
                 <br>
-                {% if len_b > 50 and not all %}
+                {% if b_len > 50 and not all %}
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
@@ -103,9 +103,9 @@
         {% endif %}
         
         {% if STAGE_C is not none %}
-            <h2>Connected {{ STAGE_C }} Workers - {{ "{:,}".format(len_c) }}</h2>
+            <h2>Connected {{ STAGE_C }} Workers - {{ "{:,}".format(c_len) }}</h2>
             <br>
-            {% if len_c != 0 %}
+            {% if c_len != 0 %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -135,7 +135,7 @@
                     </tbody>
                 </table>
                 <br>
-                {% if len_c > 50 and not all %}
+                {% if c_len > 50 and not all %}
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
@@ -145,9 +145,9 @@
         {% endif %}
 
         {% if STAGE_D is not none %}
-            <h2>Connected {{ STAGE_D }} Workers - {{ "{:,}".format(len_d) }}</h2>
+            <h2>Connected {{ STAGE_D }} Workers - {{ "{:,}".format(d_len) }}</h2>
             <br>
-            {% if len_d != 0 %}
+            {% if d_len != 0 %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -177,7 +177,7 @@
                     </tbody>
                 </table>
                 <br>
-                {% if len_d > 50 and not all %}
+                {% if d_len > 50 and not all %}
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
@@ -187,9 +187,9 @@
         {% endif %}
 
         {% if STAGE_E is not none %}
-            <h2>Connected {{ STAGE_E }} Workers - {{ "{:,}".format(len_e) }}</h2>
+            <h2>Connected {{ STAGE_E }} Workers - {{ "{:,}".format(e_len) }}</h2>
             <br>
-            {% if len_e != 0 %}
+            {% if e_len != 0 %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -219,7 +219,7 @@
                     </tbody>
                 </table>
                 <br>
-                {% if len_e > 50 and not all %}
+                {% if e_len > 50 and not all %}
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
