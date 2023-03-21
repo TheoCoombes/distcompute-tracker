@@ -175,15 +175,15 @@ async def leaderboard_page(request: Request):
 
 @app.get('/worker/{stage_name}/{display_name}', response_class=HTMLResponse)
 async def worker_info(stage_name: str, display_name: str, request: Request):
-    if stage_name == STAGE_A:
+    if stage_name == STAGE_A.lower():
         stage = 'a'
-    elif stage_name == STAGE_B:
+    elif stage_name == STAGE_B.lower():
         stage = 'b'
-    elif stage_name == STAGE_C:
+    elif stage_name == STAGE_C.lower():
         stage = 'c'
-    elif stage_name == STAGE_D:
+    elif stage_name == STAGE_D.lower():
         stage = 'd'
-    elif stage_name == STAGE_E:
+    elif stage_name == STAGE_E.lower():
         stage = 'e'
     else:
         raise HTTPException(status_code=400, detail=f"Invalid worker stage.")
