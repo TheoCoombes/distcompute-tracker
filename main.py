@@ -57,44 +57,44 @@ async def index(request: Request, all: Optional[bool] = False):
     # TODO Maybe there's a better way to write this code / iterate? haha
     if not all:
         if STAGE_A is not None:
-            a_workers = await Worker.filter(stage="a").prefetch_related("shard").order_by("first_seen").limit(50)
+            a_workers = await Worker.filter(stage="a").prefetch_related("job").order_by("first_seen").limit(50)
         else:
             a_workers = None
         if STAGE_B is not None:
-            b_workers = await Worker.filter(stage="b").prefetch_related("shard").order_by("first_seen").limit(50)
+            b_workers = await Worker.filter(stage="b").prefetch_related("job").order_by("first_seen").limit(50)
         else:
             b_workers = None
         if STAGE_C is not None:
-            c_workers = await Worker.filter(stage="c").prefetch_related("shard").order_by("first_seen").limit(50)
+            c_workers = await Worker.filter(stage="c").prefetch_related("job").order_by("first_seen").limit(50)
         else:
             c_workers = None
         if STAGE_D is not None:
-            d_workers = await Worker.filter(stage="d").prefetch_related("shard").order_by("first_seen").limit(50)
+            d_workers = await Worker.filter(stage="d").prefetch_related("job").order_by("first_seen").limit(50)
         else:
             d_workers = None
         if STAGE_E is not None:
-            e_workers = await Worker.filter(stage="e").prefetch_related("shard").order_by("first_seen").limit(50)
+            e_workers = await Worker.filter(stage="e").prefetch_related("job").order_by("first_seen").limit(50)
         else:
             e_workers = None
     else:
         if STAGE_A is not None:
-            a_workers = await Worker.filter(stage="a").prefetch_related("shard").order_by("first_seen")
+            a_workers = await Worker.filter(stage="a").prefetch_related("job").order_by("first_seen")
         else:
             a_workers = None
         if STAGE_B is not None:
-            b_workers = await Worker.filter(stage="b").prefetch_related("shard").order_by("first_seen")
+            b_workers = await Worker.filter(stage="b").prefetch_related("job").order_by("first_seen")
         else:
             b_workers = None
         if STAGE_C is not None:
-            c_workers = await Worker.filter(stage="c").prefetch_related("shard").order_by("first_seen")
+            c_workers = await Worker.filter(stage="c").prefetch_related("job").order_by("first_seen")
         else:
             c_workers = None
         if STAGE_D is not None:
-            d_workers = await Worker.filter(stage="d").prefetch_related("shard").order_by("first_seen")
+            d_workers = await Worker.filter(stage="d").prefetch_related("job").order_by("first_seen")
         else:
             d_workers = None
         if STAGE_E is not None:
-            e_workers = await Worker.filter(stage="e").prefetch_related("shard").order_by("first_seen")
+            e_workers = await Worker.filter(stage="e").prefetch_related("job").order_by("first_seen")
         else:
             e_workers = None
 
@@ -189,7 +189,7 @@ async def worker_info(stage_name: str, display_name: str, request: Request):
         raise HTTPException(status_code=400, detail=f"Invalid worker stage.")
         
     try:
-        worker = await Worker.get(display_name=display_name, stage=stage).prefetch_related("shard")
+        worker = await Worker.get(display_name=display_name, stage=stage).prefetch_related("job")
     except Exception:
         raise HTTPException(status_code=404, detail="Worker not found.")
 
@@ -455,11 +455,11 @@ async def check_idle():
         await asyncio.sleep(300)
         t = math.floor(datetime.utcnow().timestamp()) - IDLE_TIMEOUT
         
-        clients = await Worker.filter(last_seen__lte=t, shard_id__not_isnull=True).prefetch_related("shard")
+        clients = await Worker.filter(last_seen__lte=t, job__not_isnull=True).prefetch_related("job")
         for client in clients:
-            if client.shard.pending:
-                client.shard.pending = False
-                await client.shard.save()
+            if client.job.pending:
+                client.job.pending = False
+                await client.job.save()
         
         await Worker.filter(last_seen__lte=t).delete()
 
