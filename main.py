@@ -350,8 +350,8 @@ async def completeJob(inp: CompleteJobInput) -> str:
     if worker.job.closed:
         raise HTTPException(status_code=403, detail="This job has already been marked as completed.")
     
-    if inp.url is None:
-        raise HTTPException(status_code=400, detail="The worker did not submit valid download data.")
+    if inp.data is None:
+        raise HTTPException(status_code=400, detail="The worker did not submit valid data.")
     
     if worker.stage == "a":
         worker.job.data_a = inp.data
