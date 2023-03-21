@@ -461,10 +461,11 @@ async def check_idle():
         await asyncio.sleep(300)
         t = math.floor(datetime.utcnow().timestamp()) - IDLE_TIMEOUT
         
-        clients = await Worker.filter(last_seen__lte=t, job__not_isnull=True).prefetch_related("job")
+        clients = await Worker.filter(last_seen__lte=t).prefetch_related("job")
         for client in clients:
-            if client.job.pending:
+            if client.job is not None and client.job.pending:
                 client.job.pending = False
+                cleint.job.completor = None
                 await client.job.save()
         
         await Worker.filter(last_seen__lte=t).delete()
