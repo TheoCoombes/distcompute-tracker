@@ -12,7 +12,7 @@
         <br><br>
         <h2>Worker: {{ worker.display_name }}</h2>
         <br>
-        <strong>Worker Stage:</strong> {{ worker_stage_name }} ({{ worker.stage }})
+        <strong>Worker Stage:</strong> {{ worker_stage_name }} ('{{ worker.stage | upper }}')
 	    <br><br>
         <strong>First Seen:</strong> <span class="timestamp">{{ worker.first_seen }}</span>
 	    <br><br>
