@@ -1,7 +1,8 @@
+from pathlib import Path
 import random
 import json
 
-with open("words.json", "r") as f:
+with open(Path(__file__).parents[0] / "words.json", "r") as f:
     db = json.load(f)
 
 def generate_worker_name():
