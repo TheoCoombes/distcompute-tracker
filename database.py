@@ -52,7 +52,7 @@ class Worker(Model):
 class User(Model):
     """ The job completion leaderboard. """
     nickname = fields.CharField(pk=True, max_length=128)
-    jobs_completed = fields.IntField()
+    jobs_completed = fields.IntField(default=0)
     
 
 # CUSTOM SQL QUERY:
