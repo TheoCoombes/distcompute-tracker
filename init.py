@@ -49,7 +49,7 @@ async def init(jobs):
         i += 1
     
     print("Bulk creating jobs in database... (this may take a while)")
-    await Job.bulk_create(jobs)
+    await Job.bulk_create(job_objects)
     
     print("Done.")
 
