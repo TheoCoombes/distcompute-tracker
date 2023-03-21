@@ -177,14 +177,19 @@ async def leaderboard_page(request: Request):
 async def worker_info(stage_name: str, display_name: str, request: Request):
     if STAGE_A is not None and stage_name == STAGE_A.lower():
         stage = 'a'
+        stage_name = STAGE_A
     elif STAGE_B is not None and stage_name == STAGE_B.lower():
         stage = 'b'
+        stage_name = STAGE_B
     elif STAGE_C is not None and stage_name == STAGE_C.lower():
         stage = 'c'
+        stage_name = STAGE_C
     elif STAGE_D is not None and stage_name == STAGE_D.lower():
         stage = 'd'
+        stage_name = STAGE_D
     elif STAGE_E is not None and stage_name == STAGE_E.lower():
         stage = 'e'
+        stage_name = STAGE_E
     else:
         raise HTTPException(status_code=400, detail=f"Invalid worker stage.")
         
@@ -196,6 +201,7 @@ async def worker_info(stage_name: str, display_name: str, request: Request):
     body = templates.TemplateResponse('worker.html', {
         "request": request,
         "worker": worker,
+        "worker_stage_name": stage_name,
         "PROJECT_NAME": PROJECT_NAME
     })
     
