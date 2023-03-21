@@ -36,11 +36,11 @@
                     <tbody>
                         {% for worker in a_workers %}
                             <tr>
-                                <th scope="row"><a href="/worker/{{ STAGE_A }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                <th scope="row"><a href="/worker/{{ STAGE_A | lower }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
                                 {% if not worker.job %}
-                                    <td><i>Waiting</i></td>
+                                    <td>(N/A)</td>
                                 {% else %}
-                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                    <td>#{{ "{:,}".format(worker.job.number) }}</td>
                                 {% endif %}
                                 <td>{{ worker.progress }}</td>
                                 <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
@@ -78,11 +78,11 @@
                     <tbody>
                         {% for worker in b_workers %}
                             <tr>
-                                <th scope="row"><a href="/worker/{{ STAGE_B }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                <th scope="row"><a href="/worker/{{ STAGE_B | lower }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
                                 {% if not worker.job %}
-                                    <td><i>Waiting</i></td>
+                                    <td>(N/A)</td>
                                 {% else %}
-                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                    <td>#{{ "{:,}".format(worker.job.number) }}</td>
                                 {% endif %}
                                 <td>{{ worker.progress }}</td>
                                 <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
@@ -120,11 +120,11 @@
                     <tbody>
                         {% for worker in c_workers %}
                             <tr>
-                                <th scope="row"><a href="/worker/{{ STAGE_C }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                <th scope="row"><a href="/worker/{{ STAGE_C | lower }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
                                 {% if not worker.job %}
-                                    <td><i>Waiting</i></td>
+                                    <td>(N/A)</td>
                                 {% else %}
-                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                    <td>#{{ "{:,}".format(worker.job.number) }}</td>
                                 {% endif %}
                                 <td>{{ worker.progress }}</td>
                                 <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
@@ -162,11 +162,11 @@
                     <tbody>
                         {% for worker in d_workers %}
                             <tr>
-                                <th scope="row"><a href="/worker/{{ STAGE_D }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                <th scope="row"><a href="/worker/{{ STAGE_D | lower }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
                                 {% if not worker.job %}
-                                    <td><i>Waiting</i></td>
+                                    <td>(N/A)</td>
                                 {% else %}
-                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                    <td>#{{ "{:,}".format(worker.job.number) }}</td>
                                 {% endif %}
                                 <td>{{ worker.progress }}</td>
                                 <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
@@ -204,11 +204,11 @@
                     <tbody>
                         {% for worker in e_workers %}
                             <tr>
-                                <th scope="row"><a href="/worker/{{ STAGE_E }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
+                                <th scope="row"><a href="/worker/{{ STAGE_E | lower }}/{{ worker.display_name }}">{{ worker.display_name }}</a></th>
                                 {% if not worker.job %}
-                                    <td><i>Waiting</i></td>
+                                    <td>(N/A)</td>
                                 {% else %}
-                                    <td>{{ "{:,}".format(worker.job.number) }}</td>
+                                    <td>#{{ "{:,}".format(worker.job.number) }}</td>
                                 {% endif %}
                                 <td>{{ worker.progress }}</td>
                                 <td>{{ "{:,}".format(worker.jobs_completed) }}</td>
