@@ -46,6 +46,7 @@ async def init(jobs):
             completor=None
         )
         job_objects.append(job_object)
+        i += 1
     
     print("Bulk creating jobs in database... (this may take a while)")
     await Job.bulk_create(jobs)
