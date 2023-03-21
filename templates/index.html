@@ -15,7 +15,7 @@
         <div class="progress">
             <div class="progress-bar" role="progressbar" style="width: {{ completion_float }}%;" aria-valuenow='{{ completion_float }}' aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <br><br>
+        <br>
         <strong>Estimated Time Until Completion:</strong> {{ eta }}
         <br><br><br>
         {% if STAGE_A is not none %}
@@ -55,7 +55,7 @@
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
-                <p>There are no {{ STAGE_A }} workers currently running.</p>
+                <p>There are no {{ STAGE_A | lower }} workers currently running.</p>
             {% endif %}
             <br><br>
         {% endif %}
@@ -97,7 +97,7 @@
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
-                <p>There are no {{ STAGE_B }} workers currently running.</p>
+                <p>There are no {{ STAGE_B | lower }} workers currently running.</p>
             {% endif %}
             <br><br>
         {% endif %}
@@ -139,7 +139,7 @@
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
-                <p>There are no {{ STAGE_C }} workers currently running.</p>
+                <p>There are no {{ STAGE_C | lower }} workers currently running.</p>
             {% endif %}
             <br><br>
         {% endif %}
@@ -181,7 +181,7 @@
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
-                <p>There are no {{ STAGE_D }} workers currently running.</p>
+                <p>There are no {{ STAGE_D | lower }} workers currently running.</p>
             {% endif %}
             <br><br>
         {% endif %}
@@ -223,15 +223,14 @@
                     <i>Limited view to 50 workers. <a href="/?all=true">View All</a></i><br>
                 {% endif %}
             {% else %}
-                <p>There are no {{ STAGE_E }} workers currently running.</p>
+                <p>There are no {{ STAGE_E | lower }} workers currently running.</p>
             {% endif %}
             <br><br>
         {% endif %}
 
-        <h2>Links</h2>
+        <h3>Links</h3>
         <p>
             <ul>
-                <br>
                 <strong>{{ PROJECT_NAME }}</strong>
                 <li><a href="/leaderboard">Leaderboard</a></li>
 
@@ -241,8 +240,6 @@
                 <li><a href="https://github.com/TheoCoombes/Distributed-Compute-Tracker">Server GitHub Repository</a></li>
             </ul>
         </p>
-        <br><br>
-
         <script src="https://cdn.jsdelivr.net/gh/TheoCoombes/crawlingathome-server@main/cdn/main.js"></script>
 	</body>
 </html>
