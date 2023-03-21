@@ -30,7 +30,7 @@
         <br><br>
         <strong>Total Shards Completed:</strong> {{ '{:,}'.format(worker.jobs_completed) }}
         <br><br>
-        <strong>Efficiency:</strong> {{ '{0:.2f}'.format((worker.jobs_completed / (worker.last_seen - worker.first_seen)) * 3600) }} shards per hour
+        <strong>Efficiency:</strong> {{ '{0:.2f}'.format((worker.jobs_completed / ((worker.last_seen + 1) - worker.first_seen)) * 3600) }} shards per hour
         <br><br><br>
 	    <a href="/">Back</a>
 	
