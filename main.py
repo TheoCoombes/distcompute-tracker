@@ -465,7 +465,7 @@ async def check_idle():
         for client in clients:
             if client.job is not None and client.job.pending:
                 client.job.pending = False
-                cleint.job.completor = None
+                client.job.completor = None
                 await client.job.save()
         
         await Worker.filter(last_seen__lte=t).delete()
